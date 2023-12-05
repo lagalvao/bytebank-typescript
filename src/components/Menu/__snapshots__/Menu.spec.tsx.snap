@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu should render a list of links with class link 1`] = `
+[
+  <a
+    class="text-slate-900 text-base cursor-pointer hover:text-black font-semibold"
+    href="/"
+  >
+    Inicial
+  </a>,
+  <a
+    class="text-slate-900 text-base cursor-pointer hover:text-black font-semibold"
+    href="/"
+  >
+    Transferências
+  </a>,
+  <a
+    class="text-slate-900 text-base cursor-pointer hover:text-black font-semibold"
+    href="/"
+  >
+    Investimentos
+  </a>,
+  <a
+    class="text-slate-900 text-base cursor-pointer hover:text-black font-semibold"
+    href="/"
+  >
+    Outros serviços
+  </a>,
+]
+`;
