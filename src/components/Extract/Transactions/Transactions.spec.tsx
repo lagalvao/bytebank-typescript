@@ -4,7 +4,7 @@ import Transactions, { Transaction } from '.'
 describe('Transactions', () => {
   it('should render the same component with updated props', () => {
     const transaction: Transaction = {
-      type: 'deposit',
+      transaction: 'deposit',
       month: 'Janeiro',
       data: '11/05/2023',
       value: 100,
@@ -19,7 +19,7 @@ describe('Transactions', () => {
     expect(transactionValue).toHaveTextContent('R$ 100')
 
     const newTransaction: Transaction = {
-      type: 'transfer',
+      transaction: 'transfer',
       month: 'Janeiro',
       data: '11/05/2023',
       value: 100,
