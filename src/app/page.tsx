@@ -4,21 +4,23 @@ import { useState } from 'react'
 import Header from '@/components/Header'
 import Menu from '@/components/Menu'
 import Transaction from '@/components/Transaction'
-import { Transaction as TransactionInterface } from '@/components/Extract/Transactions'
 import Extract from '@/components/Extract'
 import Main from '@/components/Main'
 
 import { calculateNewBalance } from '@/utils'
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
 
 export default function Home() {
   const [balance, setBalance] = useState(1000)
-  const [transactions, setTransactions] = useState<TransactionInterface[]>([])
+  const [transactions, setTransactions] = useState<AddNewTransaction[]>([])
 
-  function carryOutTransaction(values: any) {
+  function carryOutTransaction(values: AddNewTransaction) {
+    const { transactionType, transactionValue } = values
+
     const newBalance = calculateNewBalance(
       {
-        transaction: values.transaction,
-        value: values.value,
+        transactionType,
+        transactionValue,
       },
       balance,
     )

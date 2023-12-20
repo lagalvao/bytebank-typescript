@@ -3,9 +3,10 @@ import illustrationImg from '../../assets/ilustracao-transacao.svg'
 import topDetailImg from '../../assets/detalhe-sup.svg'
 import bottomDetailImg from '../../assets/detalhe-inf.svg'
 import Form from './Form'
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
 
 interface TransactionProps {
-  carryOutTransaction: (values: any) => void
+  carryOutTransaction: (values: AddNewTransaction) => void
 }
 
 export default function Transaction({ carryOutTransaction }: TransactionProps) {

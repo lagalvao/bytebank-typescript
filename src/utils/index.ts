@@ -4,9 +4,9 @@ export const calculateNewBalance = (
   values: TransactionsInterface,
   balance: number,
 ) => {
-  if (values.transaction === 'deposit') {
-    return balance + Number(values.value)
+  if (values.transactionType === 'deposit') {
+    return balance + Number(values.transactionValue)
   } else {
-    return balance - Number(values.value)
+    return balance - Number(values.transactionValue)
   }
 }

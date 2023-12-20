@@ -1,23 +1,17 @@
-import { useState } from 'react'
-
-export interface CarryOutTransactionProps {
-  transaction: 'deposit' | 'transfer' | 'none'
-  value: string
-  date: string
-  month: string
-}
-
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
+import { TransactionsInterface } from '@/models/interfaces/transactions.interface'
+import { ChangeEvent, FormEvent, useState } from 'react'
 interface FormProps {
-  carryOutTransaction: (values: any) => void
+  carryOutTransaction: (values: AddNewTransaction) => void
 }
 
 export default function Form({ carryOutTransaction }: FormProps) {
-  const [fieldValue, setFieldValue] = useState({
-    transaction: 'none',
-    value: '',
+  const [fieldValue, setFieldValue] = useState<TransactionsInterface>({
+    transactionType: 'none',
+    transactionValue: null,
   })
 
-  function handleChange(e: any) {
+  function handleChange(e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
     const { name, value } = e.target
 
     const updatedValues = { ...fieldValue, [name]: value }
@@ -25,18 +19,21 @@ export default function Form({ carryOutTransaction }: FormProps) {
     setFieldValue(updatedValues)
   }
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault()
+
     const transactionDate = new Date().toLocaleDateString('pt-br')
     const monthTransaction = new Date().toLocaleDateString('pt-br', {
       month: 'long',
     })
+
     carryOutTransaction({
       ...fieldValue,
       date: transactionDate,
       month: monthTransaction[0].toUpperCase() + monthTransaction.substring(1),
     })
-    setFieldValue({ ...fieldValue, value: '' })
+
+    setFieldValue({ ...fieldValue, transactionValue: null })
   }
 
   return (
@@ -48,23 +45,23 @@ export default function Form({ carryOutTransaction }: FormProps) {
       <select
         className="rounded-md p-2 border-solid border-green-700 text-sm outline-none"
         onChange={(e) => handleChange(e)}
-        name="transaction"
+        name="transactionType"
         data-testid="select-options"
       >
         <option value="none">Selecione um tipo de transação</option>
         <option value="deposit">Depósito</option>
         <option value="transfer">Transferência</option>
       </select>
-      <label htmlFor="value" className="px-0 py-4 font-bold">
+      <label htmlFor="transactionValue" className="px-0 py-4 font-bold">
         Valor
       </label>
       <input
         onChange={(e) => handleChange(e)}
         className="rounded-md p-2 border-solid border-green-300 text-sm outline-none text-center w-[70%] mb-4"
         type="number"
-        value={fieldValue.value}
-        name="value"
-        id="value"
+        value={fieldValue.transactionValue?.toString()}
+        name="transactionValue"
+        id="transactionValue"
         placeholder="Digite um valor"
       />
       <button

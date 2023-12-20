@@ -15,8 +15,8 @@ describe('Utils', () => {
 
   it('when I carry out a transaction that is of the deposit type, the balance must increase', () => {
     const transaction: TransactionsInterface = {
-      transaction: 'deposit',
-      value: 50,
+      transactionType: 'deposit',
+      transactionValue: 50,
     }
 
     const newValue = calculateNewBalance(transaction, 100)
@@ -26,8 +26,8 @@ describe('Utils', () => {
 
   it('when I carry out a transaction that is of the transfer type, the balance must decrease', () => {
     const transaction: TransactionsInterface = {
-      transaction: 'transfer',
-      value: 50,
+      transactionType: 'transfer',
+      transactionValue: 50,
     }
 
     const newValue = calculateNewBalance(transaction, 100)

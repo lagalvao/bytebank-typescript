@@ -1,25 +1,25 @@
 import { render } from '@testing-library/react'
 import Extract from '.'
-import { Transaction } from './Transactions'
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
 
 describe('Extract', () => {
   it('should render a list of transactions', () => {
-    const transactions: Transaction[] = [
+    const transactions: AddNewTransaction[] = [
       {
-        transaction: 'deposit',
+        transactionType: 'deposit',
         month: 'Janeiro',
-        data: '11/05/2023',
-        value: 100,
+        date: '11/05/2023',
+        transactionValue: 100,
       },
     ]
 
     render(<Extract transactions={transactions} />)
 
     expect(transactions[0]).toEqual({
-      transaction: 'deposit',
+      transactionType: 'deposit',
       month: 'Janeiro',
-      data: '11/05/2023',
-      value: 100,
+      date: '11/05/2023',
+      transactionValue: 100,
     })
   })
 })

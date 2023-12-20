@@ -1,13 +1,14 @@
 import { render, screen } from '@testing-library/react'
-import Transactions, { Transaction } from '.'
+import Transactions from '.'
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
 
 describe('Transactions', () => {
   it('should render the same component with updated props', () => {
-    const transaction: Transaction = {
-      transaction: 'deposit',
+    const transaction: AddNewTransaction = {
+      transactionType: 'deposit',
       month: 'Janeiro',
-      data: '11/05/2023',
-      value: 100,
+      date: '11/05/2023',
+      transactionValue: 100,
     }
 
     const { rerender } = render(<Transactions transaction={transaction} />)
@@ -18,11 +19,11 @@ describe('Transactions', () => {
     expect(transactionType).toHaveTextContent('Depósito')
     expect(transactionValue).toHaveTextContent('R$ 100')
 
-    const newTransaction: Transaction = {
-      transaction: 'transfer',
+    const newTransaction: AddNewTransaction = {
+      transactionType: 'transfer',
       month: 'Janeiro',
-      data: '11/05/2023',
-      value: 100,
+      date: '11/05/2023',
+      transactionValue: 100,
     }
 
     rerender(<Transactions transaction={newTransaction} />)

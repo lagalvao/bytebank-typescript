@@ -1,7 +1,8 @@
-import Transactions, { Transaction } from './Transactions'
+import { AddNewTransaction } from '@/models/interfaces/add-new-transaction.interface'
+import Transactions from './Transactions'
 
 interface ExtractProps {
-  transactions: Transaction[]
+  transactions: AddNewTransaction[]
 }
 
 export default function Extract({ transactions }: ExtractProps) {
